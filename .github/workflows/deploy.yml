@@ -63,6 +63,7 @@ jobs:
           port: 22
           script: | 
            cd gift
+           ls
            docker --version
            bash ./scripts/stop.sh
 
