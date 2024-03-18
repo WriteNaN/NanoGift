@@ -113,6 +113,5 @@ jobs:
 
             cp ./ngnix.conf /etc/nginx/nginx.conf
 
-            systemctl status nginx.service
-            journalctl -xe
+            sudo less /var/log/nginx/error.log
             #sudo systemctl restart nginx
