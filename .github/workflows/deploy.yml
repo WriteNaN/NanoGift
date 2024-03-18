@@ -46,7 +46,7 @@ jobs:
           port: 22
           script: |
             mkdir -p gift
-            cd deploy
+            cd gift
             if [ ! -d ".git" ]; then
              git init
              git remote add origin https://WriteNaN:${{ secrets.FINE_GRAINED_TOKEN }}@github.com/WriteNaN/NanoGift
