@@ -62,6 +62,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: | 
+           cd gift
            docker --version
            bash ./scripts/stop.sh
 
