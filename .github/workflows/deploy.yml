@@ -110,3 +110,5 @@ jobs:
 
             sudo ufw enable
             sudo ufw allow 80/tcp
+
+            sudo systemctl restart nginx
