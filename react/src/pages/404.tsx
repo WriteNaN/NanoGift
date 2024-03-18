@@ -20,8 +20,7 @@ export default function NotFound() {
                 That page doesn't exist.
               </p>
               <p className="mb-4 text-lg font-light text-gray-400">
-                Sorry, we can't find that page. You'll find lots to explore on
-                the home page.{" "}
+                Sorry, we can't find that page. Navigate through homepage instead!{" "}
               </p>
               <Link
                 to="/"
