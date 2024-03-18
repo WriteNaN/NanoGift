@@ -6,7 +6,7 @@
     "bun-types": "latest"
   },
   "scripts": {
-    "start": "bun build-react && cd ../ && bun run .",
+    "start": "bun build-react && bun run .",
     "build-react": "cd react && bun run build",
     "install-deps": "bun install && cd react && bun install",
     "ui": "cd react && bun run dev"
