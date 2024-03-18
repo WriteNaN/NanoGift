@@ -1,0 +1,77 @@
+name: Remote SSH
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Package Checks
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+           if ! command -v docker &> /dev/null; then
+            sudo apt update
+              sudo apt install -y docker.io
+              sudo systemctl start docker
+              sudo systemctl enable docker
+            fi
+
+            if ! command -v docker-compose &> /dev/null; then
+              sudo apt update
+              sudo apt install -y docker-compose
+            fi
+
+            if ! command -v git &> /dev/null; then
+                sudo apt install -y git
+            fi
+
+            if ! command -v bun &> /dev/null; then
+                curl https://bun.sh/install | bash
+            fi
+
+      - name: Push changes to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            mkdir -p gift
+            cd deploy
+            if [ ! -d ".git" ]; then
+             git init
+             git remote add origin https://WriteNaN:${{ secrets.FINE_GRAINED_TOKEN }}@github.com/WriteNaN/NanoGift
+            fi
+            git fetch --all
+            git reset --hard origin/main
+
+      - name: Stop Existing
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: | 
+           docker --version
+           bash ./scripts/stop.sh
+
+      - name: Deploy App
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cd gift
+            docker build -t prod .
