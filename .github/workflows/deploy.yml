@@ -29,8 +29,17 @@ jobs:
               sudo apt install -y docker-compose
             fi
 
+            if ! command -v nginx &> /dev/null; then
+              sudo apt update
+              sudo apt install -y nginx
+            fi
+
             if ! command -v git &> /dev/null; then
                 sudo apt install -y git
+            fi
+
+            if ! command -v ufw &> /dev/null; then
+                sudo apt install -y ufw
             fi
 
             if ! command -v bun &> /dev/null; then
@@ -88,4 +97,25 @@ jobs:
           script: |
             cd gift
             docker run -d prod
-      
+
+      - name: Serve ft.Apache
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cd gift
+                  - name: Deploy Image
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cd gift
+
+            sudo ufw enable
+            sudo ufw allow 80/tcp
