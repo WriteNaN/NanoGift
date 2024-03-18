@@ -1,7 +1,5 @@
-import { $ } from "bun";
-
 const server = Bun.serve({
-  port: 80,
+  port: 3000,
   async fetch(req, server) {
     const path = new URL(req.url).pathname;
     const args = path.split("/").slice(1);
