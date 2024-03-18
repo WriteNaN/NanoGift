@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  cursor: url("/img/cursor.svg"), auto;
+}
+
+.glow-blue-box {
+  -webkit-box-shadow: 0px 0px 300px 1px rgba(46, 123, 255, 0.56);
+  -moz-box-shadow: 0px 0px 300px 1px rgba(46, 123, 255, 0.56);
+  box-shadow: 0px 0px 300px 1px rgba(46, 123, 255, 0.56);
+}
+
+.glow-blue-box-2 {
+  border: 1px solid #5865f283;
+  box-shadow: 0px 0px 6px #5865F2;
+}
+
+.glow-blue-box-3 {
+  border: 1px solid #1427f559;
+  box-shadow: 0px 0px 9px #0b1ef073;
+}
+
+.gx:hover {
+  opacity: 0.7;
+}
+
+.font-heading {
+  font-weight: bold;
+}
+
+.glow-orange {
+  filter: drop-shadow(0 0 1px rgb(16, 179, 255));
+}
+
+::selection {
+  background-color: #fff;
+  color: #000;
+}
+
+.glow-red-box:hover {
+  border: 1px solid #ff6955;
+  box-shadow: 0px 0px 9px #ff000073;
+}
+
+.glow-y-box {
+  border: 1px solid #55f4ff59;
+  box-shadow: 0px 0px 9px #0026ff73;
+}
+
+.glow-x-box {
+  border: 1px solid #55f9ff17;
+  box-shadow: 0px 0px 9px #0059ff73;
+}
+
+.glow-blue-box-4 {
+  border: 1px solid #1da0f26b;
+  box-shadow: 0px 0px 9px #1da0f286;
+}
+
+.glow-silver-box {
+  border: 1px solid #c0c0c067;
+  box-shadow: 0px 0px 6px #c0c0c06c;
+}
+
+::-webkit-scrollbar-track {
+  background: 0 0;
+  position: absolute;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff80;
+  opacity: .3;
+  border-radius: 1.5px;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  position: absolute;
+  left: 0;
+}
+
+.overlay-r-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  max-width: 100vw;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.overlay-t-bg {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  right: 0;
+  max-width: 100vw;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}

@@ -1,0 +1,14 @@
+{
+  "name": "app",
+  "version": "1.0.50",
+  "module": "index.ts",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "scripts": {
+    "start": "bun build-react && cd ../ && bun run .",
+    "build-react": "cd react && bun run build",
+    "install-deps": "bun install && cd react && bun install",
+    "ui": "cd react && bun run dev"
+  }
+}
