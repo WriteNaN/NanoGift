@@ -42,7 +42,7 @@ jobs:
                 sudo apt install -y ufw
             fi
 
-      - name: Push changes to VPS
+      - name: Push changes to Prod
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
@@ -59,7 +59,7 @@ jobs:
             git fetch --all
             git reset --hard origin/main
 
-      - name: Stop Existing
+      - name: Stop Existing Containers
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
