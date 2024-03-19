@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import "../styles/dialog.css";
 import { FaBars } from "react-icons/fa";
-import { FaBarsStaggered, FaX } from "react-icons/fa6";
+import { FaBarsStaggered } from "react-icons/fa6";
 
 export default function Navbar() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
