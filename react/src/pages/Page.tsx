@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 
 import "../styles/index.css";
 import "../styles/dialog.css";
+import "../styles/glow.css";
 
 export default function Page() {
   return (

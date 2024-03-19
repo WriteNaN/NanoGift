@@ -1,0 +1,60 @@
+.glow-blue-box {
+    -webkit-box-shadow: 0px 0px 300px 1px rgba(46, 123, 255, 0.56);
+    -moz-box-shadow: 0px 0px 300px 1px rgba(46, 123, 255, 0.56);
+    box-shadow: 0px 0px 300px 1px rgba(46, 123, 255, 0.56);
+}
+
+.glow-blue-box-2 {
+    border: 1px solid #5865f283;
+    box-shadow: 0px 0px 6px #5865F2;
+}
+
+.glow-blue-box-3 {
+    border: 1px solid #1427f559;
+    box-shadow: 0px 0px 9px #0b1ef073;
+}
+
+.gx:hover {
+    opacity: 0.7;
+}
+
+.font-heading {
+    font-weight: bold;
+}
+
+.glow-orange {
+    filter: drop-shadow(0 0 1px rgb(255, 191, 16));
+}
+
+.glow-blue {
+    filter: drop-shadow(0 0 1px rgb(4, 166, 241));
+}
+
+.glow-xy-box {
+    box-shadow: 0px 0px 9px #006eff;
+}
+
+.glow-red-box:hover {
+    border: 1px solid #ff6955;
+    box-shadow: 0px 0px 9px #ff000073;
+}
+
+.glow-y-box {
+    border: 1px solid #55f4ff59;
+    box-shadow: 0px 0px 9px #0026ff73;
+}
+
+.glow-x-box {
+    border: 1px solid #55f9ff48;
+    box-shadow: 0px 0px 9px #0059ff9c;
+}
+
+.glow-blue-box-4 {
+    border: 1px solid #1da0f26b;
+    box-shadow: 0px 0px 9px #1da0f286;
+}
+
+.glow-silver-box {
+    border: 1px solid #c0c0c067;
+    box-shadow: 0px 0px 6px #c0c0c06c;
+}

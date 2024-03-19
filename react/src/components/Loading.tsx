@@ -7,7 +7,7 @@ export default function Loading () {
             <title>Nano Gift - Loading</title>
         </Helmet>
         <div className="h-screen w-screen flex justify-center align-center items-center">
-            Loading...
+            
         </div>
         </>
     );
