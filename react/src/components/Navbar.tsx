@@ -1,6 +1,6 @@
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import "../styles/dialog.css";
 import { FaBars } from "react-icons/fa";
@@ -8,11 +8,25 @@ import { FaBarsStaggered } from "react-icons/fa6";
 
 export default function Navbar() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
+  const ref = useRef<any>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setNavOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref]);
 
   return (
     <>
-
       {/** mobile */}
+      <div ref={ref}> 
       <nav className="flex bg-black/70 sm:hidden justify-between h-16 !glow-blue-box items-center border-b-2 border-gray-900 shadow-lg px-3 w-screen" >
         <div
           className="justify-start gx flex flex-row space-x-1 items-center font-heading"
@@ -60,10 +74,56 @@ export default function Navbar() {
           <span className="glow-orange"></span>
         </div>
 
-        <div role="button" onClick={() => setNavOpen(!navOpen)} className="justify-end items-center hover:text-slate-400 border p-2 rounded-md justify-center inline-flex border-gray-900">
-          {navOpen ? <FaBarsStaggered size={18} /> : <FaBars size={18} />}
+        <div className="flex justify-end space-x-2">
+        <button
+            className="inline-flex gx glow-xy-box border-gray-700 items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 relative"
+            aria-label="Open cart"
+            type="button"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="radix-:r52:"
+            data-state="closed"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={24}
+              height={24}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-4 w-4"
+              aria-hidden="true"
+            >
+              <circle cx={8} cy={21} r={1} />
+              <circle cx={19} cy={21} r={1} />
+              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+            </svg>
+          </button>
+          <div role="button" onClick={() => setNavOpen(!navOpen)} className="glow-blue-box-4 items-center hover:text-slate-400 border p-2 rounded-md justify-center inline-flex border-gray-900">
+            {navOpen ? <FaBarsStaggered size={18} /> : <FaBars size={18} />}
+          </div>
         </div>
       </nav>
+
+      {navOpen && (
+        <div className="sm:hidden text-center align-left flex flex-col items-center justify-center mt-0 p-3 pb-4 rounded-b-xl bg-black/90 glow-bottom-blue rounded-lg">
+          <div>
+          </div>
+          
+          <Link
+            className="w-full glow-blue-box-3 gx items-center justify-center rounded-lg text-sm font-medium transition-colors border border-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-blue-600 shadow hover:bg-blue-700 h-9 py-2 whitespace-nowrap px-3 mt-4 rounded-md"
+            to="/sign-in"
+          >
+            Sign In
+          </Link>
+        </div>
+      )}
+      </div>
+
+
 
       {/** desktop */}
       <nav className="hidden fixed sm:flex h-16 glow-blue-box items-center justify-between border-b-2 border-gray-900 shadow-lg px-3 w-screen">
@@ -174,7 +234,7 @@ export default function Navbar() {
                   Indexing is not supported in this context
                 </AlertDialog.Title>
                 <AlertDialog.Description className="AlertDialogDescription">
-                  This component is part of the layout but not functional in home page. You might want to try exploring the website! :D
+                  This component is part of the layout but not functional in home page yet. Sorry!
                 </AlertDialog.Description>
                 <div
                   style={{
@@ -265,11 +325,6 @@ export default function Navbar() {
           </Link>
         </div>
       </nav>
-
-      {/** mobile view */}
-      <div className={`${navOpen ? 'flex' : 'hidden'}`}>
-
-      </div>
     </>
   );
 }
