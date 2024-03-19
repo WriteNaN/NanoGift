@@ -42,10 +42,6 @@ jobs:
                 sudo apt install -y ufw
             fi
 
-            if ! command -v bun &> /dev/null; then
-                curl https://bun.sh/install | bash
-            fi
-
       - name: Push changes to VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
