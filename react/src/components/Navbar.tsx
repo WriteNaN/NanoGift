@@ -1,16 +1,20 @@
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 import "../styles/dialog.css";
 import { FaBars } from "react-icons/fa";
+import { FaBarsStaggered, FaX } from "react-icons/fa6";
 
 export default function Navbar() {
+  const [navOpen, setNavOpen] = useState<boolean>(false);
+
   return (
     <>
 
       {/** mobile */}
-      <nav className="flex sm:hidden justify-between h-16 glow-blue-box items-center border-b-2 border-gray-900 shadow-lg px-3 w-screen" >
-      <div
+      <nav className="flex bg-black/70 sm:hidden justify-between h-16 !glow-blue-box items-center border-b-2 border-gray-900 shadow-lg px-3 w-screen" >
+        <div
           className="justify-start gx flex flex-row space-x-1 items-center font-heading"
           role="button"
         >
@@ -53,17 +57,13 @@ export default function Navbar() {
               </g>{" "}
             </g>
           </svg>
-          <span className="glow-orange">Nano Gift</span>
+          <span className="glow-orange"></span>
         </div>
 
-        <div className="justify-end items-center hover:text-slate-400 border p-2 rounded-md justify-center inline-flex border-gray-900">
-          <button>
-            <FaBars />
-          </button>
+        <div role="button" onClick={() => setNavOpen(!navOpen)} className="justify-end items-center hover:text-slate-400 border p-2 rounded-md justify-center inline-flex border-gray-900">
+          {navOpen ? <FaBarsStaggered size={18} /> : <FaBars size={18} />}
         </div>
       </nav>
-
-
 
       {/** desktop */}
       <nav className="hidden fixed sm:flex h-16 glow-blue-box items-center justify-between border-b-2 border-gray-900 shadow-lg px-3 w-screen">
@@ -266,7 +266,10 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/** mobile */}
+      {/** mobile view */}
+      <div className={`${navOpen ? 'flex' : 'hidden'}`}>
+
+      </div>
     </>
   );
 }
