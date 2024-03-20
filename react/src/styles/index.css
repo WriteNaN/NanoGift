@@ -21,6 +21,10 @@ body {
   animation: animate fadeIn 5s;
 }
 
+.cl-socialButtonsBlockButtonText {
+  color: #fff;
+}
+
 ::selection {
   background-color: #fff;
   color: #000;
