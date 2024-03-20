@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ClerkProvider } from "@clerk/clerk-react";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <ClerkProvider publishableKey={"pk_test_bWFpbi1odW1wYmFjay0xOS5jbGVyay5hY2NvdW50cy5kZXYk"}>
+  <ClerkProvider publishableKey={"pk_live_Y2xlcmsubmFuby5naWZ0JA"}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
