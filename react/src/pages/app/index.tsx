@@ -1,8 +1,10 @@
 import { Helmet } from "react-helmet";
+import { useAuth } from "@clerk/clerk-react";
 
 import "../../styles/index.css";
 
 export default function App() {
+  const { userId } = useAuth(); 
   return (
     <>
     <Helmet>
@@ -10,7 +12,7 @@ export default function App() {
     </Helmet>
 
     <div className="min-h-screen">
-      <p>hi</p>
+      <p>{userId}</p>
     </div>
     </>
   );

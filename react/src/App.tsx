@@ -6,7 +6,6 @@ import Loading from "./components/Loading";
 import AppX from "./pages/app/index";
 
 export default function App() {
-
   return (
     <Routes>
       <Route
