@@ -1,14 +1,18 @@
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 
 import "../styles/dialog.css";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaUser } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 
 export default function Navbar() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
   const ref = useRef<any>(null);
+
+  const { isSignedIn } = useAuth();
+  const { user } = useUser();
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -26,101 +30,110 @@ export default function Navbar() {
   return (
     <>
       {/** mobile */}
-      <div ref={ref}> 
-      <nav className="flex bg-black/70 sm:hidden justify-between h-16 !glow-blue-box items-center border-b-2 border-gray-900 shadow-lg px-3 w-screen" >
-        <div
-          className="justify-start gx flex flex-row space-x-1 items-center font-heading"
-          role="button"
-        >
-          <svg
-            version="1.1"
-            id="_x32_"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 512 512"
-            xmlSpace="preserve"
-            className="glow-orange"
-            fill="#000000"
-            style={{ width: "32px", height: "32px" }}
-          >
-            <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-            <g
-              id="SVGRepo_tracerCarrier"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <g id="SVGRepo_iconCarrier">
-              {" "}
-              <style
-                type="text/css"
-                dangerouslySetInnerHTML={{ __html: " .st0{fill:#e8e8e8;} " }}
-              />{" "}
-              <g>
-                {" "}
-                <rect
-                  x="207.086"
-                  y="496.19"
-                  className="st0"
-                  width="140.908"
-                  height="15.81"
-                />{" "}
-                <path
-                  className="st0"
-                  d="M472.271,113.106c-13.991-49.444-54.964-70.478-101.933-62.483c-43.254,7.362-65.847,61.281-76.372,93.978 c3.124-43.308-4.871-103.534-56.541-131.656C158.477-30.028,108.51,46.922,103.513,56.915c-4.997,9.994-5.013,11.906,8.994,10.993 c4.169-0.273,40.505-10.5,76.153-4.052l16.786-15.474l7.776,21.806c29.544,10.352,53.247,36.882,57.51,76.661 c-23.968-29.466-60.929-48.437-102.558-48.437c-72.39,0-131.055,57.079-131.055,127.487c0,5.668,0.11,1.6,0.11,1.6 c0.203,2.67,1.951,4.974,4.466,5.888c2.514,0.906,5.34,0.257,7.198-1.663c0,0,1.467-2.272,8.026-8.268 c11.555-10.572,24.265-19.885,37.881-27.826l12.446-23.242l16.801,8.924c25.218-10.048,52.716-15.591,81.51-15.591 c19.003,0,37.443,2.413,55.026,6.933c-40.552-2.685-101.684,18.457-125.886,70.071c-29.98,63.958-0.468,114.722,3.794,118.696 c3.498,3.256,7.729,0.719,8.869-4.958c2.514-12.406,9.4-35.594,22.048-61.6l-5.106-20.626l14.053,3.598 c17.629-31.073,43.425-63.7,79.932-85.678c-21.877,48.196-40.63,113.715-31.495,197.012H52.546v15.81H228.79 c2.17,14.522,5.231,29.582,9.228,45.142h-87.536v15.81h91.752h86.896h58.196v-15.81h-71.063 c-7.136-10.127-16.145-25.186-24.046-45.142h176.26v-15.81H286.58c-13.741-42.964-20.705-104.088,0.188-183.894 c9.962,12.874,22.641,31.557,33.212,54.316l13.382,1.687l-5.981,16.005c7.324,19.597,12.601,41.489,13.335,64.918 c0.187,5.981,3.794,10.408,5.637,6.489c28.231-60.164,19.346-121.741-20.221-157.67c24.952,8.229,45.346,28.294,61.226,51.247 l18.956,4.068l-3.529,21.361c13.288,25.28,21.455,50.311,24.359,64.661c1.156,5.652,4.154,9.338,7.761,2.905 c21.548-38.335,24.327-111.896-14.6-152.166c-30.184-31.214-83.446-33.268-116.237-24.617 c21.533-36.203,79.136-38.897,79.136-38.897s9.119-20.986,11.118-23.984c1.999-2.998,12.992,20.44,12.992,20.44l58.008,23.695 c0,0,7.449,5.091,8.9-3.56C475.097,130.945,475.628,122.896,472.271,113.106z"
-                />{" "}
-              </g>{" "}
-            </g>
-          </svg>
-          <span className="glow-orange"></span>
-        </div>
-
-        <div className="flex justify-end space-x-2">
-        <button
-            className="inline-flex gx glow-xy-box border-gray-700 items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 relative"
-            aria-label="Open cart"
-            type="button"
-            aria-haspopup="dialog"
-            aria-expanded="false"
-            aria-controls="radix-:r52:"
-            data-state="closed"
+      <div ref={ref}>
+        <nav className="flex bg-black/70 sm:hidden justify-between h-16 !glow-blue-box items-center border-b-2 border-gray-900 shadow-lg px-3 w-screen" >
+          <div
+            className="justify-start gx flex flex-row space-x-1 items-center font-heading"
+            role="button"
           >
             <svg
+              version="1.1"
+              id="_x32_"
               xmlns="http://www.w3.org/2000/svg"
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-4 w-4"
-              aria-hidden="true"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 512 512"
+              xmlSpace="preserve"
+              className="glow-orange"
+              fill="#000000"
+              style={{ width: "32px", height: "32px" }}
             >
-              <circle cx={8} cy={21} r={1} />
-              <circle cx={19} cy={21} r={1} />
-              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+              <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+              <g
+                id="SVGRepo_tracerCarrier"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <style
+                  type="text/css"
+                  dangerouslySetInnerHTML={{ __html: " .st0{fill:#e8e8e8;} " }}
+                />{" "}
+                <g>
+                  {" "}
+                  <rect
+                    x="207.086"
+                    y="496.19"
+                    className="st0"
+                    width="140.908"
+                    height="15.81"
+                  />{" "}
+                  <path
+                    className="st0"
+                    d="M472.271,113.106c-13.991-49.444-54.964-70.478-101.933-62.483c-43.254,7.362-65.847,61.281-76.372,93.978 c3.124-43.308-4.871-103.534-56.541-131.656C158.477-30.028,108.51,46.922,103.513,56.915c-4.997,9.994-5.013,11.906,8.994,10.993 c4.169-0.273,40.505-10.5,76.153-4.052l16.786-15.474l7.776,21.806c29.544,10.352,53.247,36.882,57.51,76.661 c-23.968-29.466-60.929-48.437-102.558-48.437c-72.39,0-131.055,57.079-131.055,127.487c0,5.668,0.11,1.6,0.11,1.6 c0.203,2.67,1.951,4.974,4.466,5.888c2.514,0.906,5.34,0.257,7.198-1.663c0,0,1.467-2.272,8.026-8.268 c11.555-10.572,24.265-19.885,37.881-27.826l12.446-23.242l16.801,8.924c25.218-10.048,52.716-15.591,81.51-15.591 c19.003,0,37.443,2.413,55.026,6.933c-40.552-2.685-101.684,18.457-125.886,70.071c-29.98,63.958-0.468,114.722,3.794,118.696 c3.498,3.256,7.729,0.719,8.869-4.958c2.514-12.406,9.4-35.594,22.048-61.6l-5.106-20.626l14.053,3.598 c17.629-31.073,43.425-63.7,79.932-85.678c-21.877,48.196-40.63,113.715-31.495,197.012H52.546v15.81H228.79 c2.17,14.522,5.231,29.582,9.228,45.142h-87.536v15.81h91.752h86.896h58.196v-15.81h-71.063 c-7.136-10.127-16.145-25.186-24.046-45.142h176.26v-15.81H286.58c-13.741-42.964-20.705-104.088,0.188-183.894 c9.962,12.874,22.641,31.557,33.212,54.316l13.382,1.687l-5.981,16.005c7.324,19.597,12.601,41.489,13.335,64.918 c0.187,5.981,3.794,10.408,5.637,6.489c28.231-60.164,19.346-121.741-20.221-157.67c24.952,8.229,45.346,28.294,61.226,51.247 l18.956,4.068l-3.529,21.361c13.288,25.28,21.455,50.311,24.359,64.661c1.156,5.652,4.154,9.338,7.761,2.905 c21.548-38.335,24.327-111.896-14.6-152.166c-30.184-31.214-83.446-33.268-116.237-24.617 c21.533-36.203,79.136-38.897,79.136-38.897s9.119-20.986,11.118-23.984c1.999-2.998,12.992,20.44,12.992,20.44l58.008,23.695 c0,0,7.449,5.091,8.9-3.56C475.097,130.945,475.628,122.896,472.271,113.106z"
+                  />{" "}
+                </g>{" "}
+              </g>
             </svg>
-          </button>
-          <div role="button" onClick={() => setNavOpen(!navOpen)} className="glow-blue-box-4 items-center hover:text-slate-400 border p-2 rounded-md justify-center inline-flex border-gray-900">
-            {navOpen ? <FaBarsStaggered size={18} /> : <FaBars size={18} />}
+            <span className="glow-orange"></span>
           </div>
-        </div>
-      </nav>
 
-      {navOpen && (
-        <div className="sm:hidden text-center align-left flex flex-col items-center justify-center mt-0 p-3 pb-4 rounded-b-xl bg-black/90 glow-bottom-blue rounded-lg">
-          <div>
+          <div className="flex justify-end space-x-2">
+            <button
+              className="inline-flex gx glow-xy-box border-gray-700 items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 relative"
+              aria-label="Open cart"
+              type="button"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="radix-:r52:"
+              data-state="closed"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4"
+                aria-hidden="true"
+              >
+                <circle cx={8} cy={21} r={1} />
+                <circle cx={19} cy={21} r={1} />
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+              </svg>
+            </button>
+            <div role="button" onClick={() => setNavOpen(!navOpen)} className="glow-blue-box-4 items-center hover:text-slate-400 border p-2 rounded-md justify-center inline-flex border-gray-900">
+              {navOpen ? <FaBarsStaggered size={18} /> : <FaBars size={18} />}
+            </div>
           </div>
-          
-          <Link
-            className="w-full glow-blue-box-3 gx items-center justify-center rounded-lg text-sm font-medium transition-colors border border-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-blue-600 shadow hover:bg-blue-700 h-9 py-2 whitespace-nowrap px-3 mt-4 rounded-md"
-            to="/sign-in"
-          >
-            Sign In
-          </Link>
-        </div>
-      )}
+        </nav>
+
+        {navOpen && (
+          <div className="sm:hidden text-center align-left flex flex-col items-center justify-center mt-0 p-3 pb-4 rounded-b-xl bg-black/90 glow-bottom-blue rounded-lg">
+            <div>
+            </div>
+
+            {isSignedIn ? (
+              <Link
+                className="w-full glow-blue-box-3 gx items-center justify-center rounded-lg text-sm font-medium transition-colors border border-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-blue-600 shadow hover:bg-blue-700 h-9 py-2 whitespace-nowrap px-3 mt-4 rounded-md"
+                to="/app"
+              >
+                Dashboard
+              </Link>
+            ) : (
+              <Link
+                className="w-full glow-blue-box-3 gx items-center justify-center rounded-lg text-sm font-medium transition-colors border border-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-blue-600 shadow hover:bg-blue-700 h-9 py-2 whitespace-nowrap px-3 mt-4 rounded-md"
+                to="/sign-in"
+              >
+                Sign In
+              </Link>
+            )}
+          </div>
+        )}
       </div>
 
 
@@ -317,12 +330,23 @@ export default function Navbar() {
               </svg>
             </a>
           </div>
-          <Link
-            className="inline-flex glow-blue-box-3 gx items-center justify-center rounded-lg text-sm font-medium transition-colors border border-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-blue-600 shadow hover:bg-blue-700 h-9 py-2 whitespace-nowrap px-3"
-            to="/sign-in"
-          >
-            Sign In
-          </Link>
+          {isSignedIn ?
+            (
+              <Link
+                to="/app"
+                className="inline-flex items-center justify-center px-3 py-2 space-x-1 text-sm font-medium text-white transition-colors bg-blue-600 border border-blue-600 rounded-lg shadow hover:bg-blue-700 glow-blue-box-3 focus:outline-none focus:ring-1 focus:ring-blue-600 disabled:opacity-50 disabled:pointer-events-none"
+              >
+                <FaUser className="text-blue-200" />
+                <span className="whitespace-nowrap">Hi, {user?.firstName}</span>
+              </Link>
+            ) :
+            (<Link
+              className="inline-flex glow-blue-box-3 gx items-center justify-center rounded-lg text-sm font-medium transition-colors border border-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-blue-600 shadow hover:bg-blue-700 h-9 py-2 whitespace-nowrap px-3"
+              to="/sign-in"
+            >
+              Sign In
+            </Link>)
+          }
         </div>
       </nav>
     </>

@@ -10,7 +10,6 @@ body {
   font-family: "Manrope", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  cursor: url("/img/cursor.svg"), auto;
 }
 
 @keyframes fadeIn {
@@ -42,6 +41,10 @@ body {
   width: 1px;
   position: absolute;
   left: 0;
+}
+
+.overflow-hidden-uwu {
+  overflow: hidden !important;
 }
 
 .overlay-r-bg {
