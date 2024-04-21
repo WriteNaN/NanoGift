@@ -1,9 +1,6 @@
 <h1 style="text-align: center;">🎁 Nano Gift</h1>
 <p>You want it? we push it! 🎉🚀</p>
 
-<span>Building In Public 🔥</span>
-<p>exploit-proof? 🤞</p>
-
 ### Issues
 Dont like a feature? found something buggy? any errors? want to suggest improvements & new features?
 
